@@ -1,0 +1,32 @@
+#gh-helper > ul {
+  margin-top: 10px;
+  width: 100%;
+  border-top: 1px solid #e5e5e5;
+}
+.enterprise #gh-helper > ul {
+  border-top-color: #434648;
+}
+#gh-helper > ul > li {
+  cursor: pointer;
+}
+#gh-helper > ul > li.toggleLink.selected > a:hover {
+  text-decoration: underline;
+}
+#gh-helper > ul > li.toggleLink.selected > a {
+  color: #4183c4;
+}
+#gh-helper > ul > div.divider-vertical {
+  float: left;
+  width: 1px;
+  height: 28px;
+  margin: 0 15px;
+  background-color: #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+}
+.enterprise #gh-helper > ul > div.divider-vertical {
+  background-color: #2a2c2e;
+  border-right-color: #434648;
+}
+#gh-helper > ul > li {
+  line-height: 18px;
+}

@@ -1,0 +1,34 @@
+{
+  "content_scripts": [{
+    "css": [
+      "content/inject.css"
+    ],
+    "js": [
+      "content/jquery-2.1.1.min.js",
+      "content/inject.js"
+    ],
+    "matches": [
+      "https://github.dev.xero.com/*/*/pull/*",
+      "https://github.com/*/*/pull/*"
+    ],
+    "run_at": "document_end"
+  }],
+  "web_accessible_resources": [
+    "content/jquery-2.1.1.min.map"
+  ],
+  "description": "Chrome extension that creates a filters bar on GitHub so that you can show/hide file types for pull requests.",
+  "homepage_url": "http://github.com/psyrendust/GitHub-Review-Filters",
+  "icons": {
+    "128": "icons/icon-128.png",
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png"
+  },
+  "manifest_version": 2,
+  "name": "GitHub Review Filters",
+  "permissions": [
+    "https://github.dev.xero.com/*",
+    "https://github.com/*"
+  ],
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "version": "0.0.1"
+}
