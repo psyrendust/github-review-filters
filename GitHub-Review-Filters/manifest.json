@@ -17,7 +17,7 @@
     "content/jquery-2.1.1.min.map"
   ],
   "description": "Chrome extension that creates a filters bar on GitHub so that you can show/hide file types for pull requests.",
-  "homepage_url": "http://github.com/psyrendust/GitHub-Review-Filters",
+  "homepage_url": "https://github.com/psyrendust/github-review-filters",
   "icons": {
     "128": "icons/icon-128.png",
     "16": "icons/icon-16.png",
