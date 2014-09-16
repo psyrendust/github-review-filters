@@ -1,0 +1,10 @@
+{
+   "appDesc": {
+      "description": "App description.",
+      "message": "Chrome extension that creates a filters menu bar on GitHub so that you can show/hide file types for pull requests."
+   },
+   "appName": {
+      "description": "App name.",
+      "message": "GitHub Review Filters"
+   }
+}
