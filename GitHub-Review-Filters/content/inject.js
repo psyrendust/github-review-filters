@@ -23,7 +23,7 @@
         if (self.typeIsVisible[type]) {
           self.fileTypes[type].forEach(function(item) {
             if (self.isPulls) {
-              item.parent().parent().parent().hide();
+              item.parent().parent().parent().parent().hide();
             } else {
               item.parent().hide();
             }
@@ -33,7 +33,7 @@
         } else {
           self.fileTypes[type].forEach(function(item) {
             if (self.isPulls) {
-              item.parent().parent().parent().show();
+              item.parent().parent().parent().parent().show();
             } else {
               item.parent().show();
             }
@@ -112,21 +112,14 @@
       self.isEnterprise = $('body').hasClass('enterprise');
       self.isPulls = pathname[3] === 'pulls' || pathname[3] === 'issues';
       self.fileTypes = {};
-      self.searchStr = 'div.meta[data-path]';
-      self.allItemsSearchStr = 'div.meta[data-path]';
+      self.searchStr = 'div[data-path]';
+      self.allItemsSearchStr = 'div[data-path]';
       self.typeIsVisible = {};
       self.$ghHelperNavUl.find('li.toggleLink').remove();
       if (self.isPulls) {
-        // List of pull requests
-        if (self.isEnterprise) {
-          // enterprise github: search for @user mentions
-          self.searchStr = '.user-mention';
-          self.allItemsSearchStr = 'ul.pulls-list-group > li.list-group-item > .list-group-item-name';
-        } else {
-          // github.com: search for issue labels
-          self.searchStr = 'span.labels > a';
-          self.allItemsSearchStr = 'ul.table-list-issues > li.table-list-item > .issue-title';
-        }
+        // List of pull requests grouped by user's github handle
+        self.searchStr = '.opened-by > a';
+        self.allItemsSearchStr = 'ul.table-list-issues > li.table-list-item > .issue-title';
       }
       self.$allItems = $(self.allItemsSearchStr);
       $(self.searchStr).each(function() {
