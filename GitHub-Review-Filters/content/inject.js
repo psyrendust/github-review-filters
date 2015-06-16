@@ -1,5 +1,3 @@
-/*global jQuery:true*/
-/*global History:true*/
 (function ($) {
   function GhHelper() {
     var self = this;
