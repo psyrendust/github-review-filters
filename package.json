@@ -11,6 +11,9 @@
     "url": "git+https://github.com/psyrendust/github-review-filters.git"
   },
   "author": "Larry Gordon <lgordon@psyrendust.com>",
+  "contributors": [
+    "Adam Yee <adamjyee@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/psyrendust/github-review-filters/issues"
