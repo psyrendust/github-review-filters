@@ -6,17 +6,17 @@
     self.$content = $('div.wrapper > div.site');
     self.$wrapper.addClass('gh-helper');
 
-    self.addLink = function(fn, label) {
-      $('<li><a>' + label + '</a></li>')
+    self.addMainLink = function (fn, label) {
+      $('<li class="header-nav-item"><a>' + label + '</a></li>')
       .click(function () {
         self[fn]();
       })
-      .appendTo(self.$ghHelperNavUl);
+      .appendTo(self.$ghHelperNavUlMain);
     };
 
     self.addToggleLink = function (type) {
       var label = (self.isPulls ? '' : '.') + type;
-      $('<li class="toggleLink selected"><a>' + label + ' (' + self.fileTypes[type].length + ')</a></li>')
+      $('<li class="header-nav-item toggleLink selected"><a>' + label + ' (' + self.fileTypes[type].length + ')</a></li>')
       .click(function () {
         if (self.typeIsVisible[type]) {
           self.fileTypes[type].forEach(function (item) {
@@ -40,14 +40,14 @@
           $(this).addClass('selected');
         }
       })
-      .appendTo(self.$ghHelperNavUl);
+      .appendTo(self.$ghHelperNavUlItems);
     };
 
-    self.addLegend = function() {
-      $('<li><a class="octicon octicon-info"></a><div id="ghLegend"><div class="arrow"></div><div class="gh-legend-title">GitHub Review Filters</div><div class="gh-legend-label"><div>Visible</div><div>Hidden</div></div><div class="gh-legend-img"></div></div></li>')
-      .appendTo(self.$ghHelperNavUl);
-      self.$ghLegend = self.$ghHelperNavUl.find('#ghLegend');
-      self.$ghHelperNav.find('.octicon').hover(function(){
+    self.addMainLegend = function () {
+      $('<li class="header-nav-item"><a class="octicon octicon-info"></a><div id="ghLegend"><div class="arrow"></div><div class="gh-legend-title">GitHub Review Filters</div><div class="gh-legend-label"><div>Visible</div><div>Hidden</div></div><div class="gh-legend-img"></div></div></li>')
+      .appendTo(self.$ghHelperNavUlMain);
+      self.$ghLegend = self.$ghHelperNavUlMain.find('#ghLegend');
+      self.$ghHelperNav.find('.octicon').hover(function () {
         self.$ghLegend.fadeIn();
       }, function () {
         self.$ghLegend.fadeOut();
@@ -56,7 +56,7 @@
 
     self.addDivider = function () {
       $('<div class="divider-vertical"></div>')
-      .appendTo(self.$ghHelperNavUl);
+      .appendTo(self.$ghHelperNavUlItems);
     };
 
     self.showAll = function () {
@@ -64,7 +64,7 @@
       Object.keys(self.typeIsVisible).forEach(function (type) {
         self.typeIsVisible[type] = true;
       });
-      self.$ghHelperNavUl.find('li.toggleLink').addClass('selected');
+      self.$ghHelperNavUlItems.find('li.toggleLink').addClass('selected');
     };
 
     self.hideAll = function () {
@@ -72,7 +72,7 @@
       Object.keys(self.typeIsVisible).forEach(function (type) {
         self.typeIsVisible[type] = false;
       });
-      self.$ghHelperNavUl.find('li.toggleLink').removeClass('selected');
+      self.$ghHelperNavUlItems.find('li.toggleLink').removeClass('selected');
     };
 
     self.init = function () {
@@ -82,15 +82,15 @@
       self.fileTypes = {};
       self.searchStr = 'div.meta[data-path]';
       self.typeIsVisible = {};
-      self.$header.after('<div id="ghHelperNav" class="' + self.$header.attr('class') + '"><div class="container clearfix"><ul class="top-nav"></ul></div></div>');
+      self.$header.after('<div id="ghHelperNav" class="' + self.$header.attr('class') + '"><div class="container clearfix"><ul class="header-nav main"></ul><div class="divider-vertical"></div><ul class="header-nav items"></ul></div></div>');
       self.$ghHelper = $('.gh-helper');
       self.$ghHelperNav = $('#ghHelperNav');
-      self.$ghHelperNavUl = self.$ghHelperNav.find('div > ul.top-nav');
+      self.$ghHelperNavUlMain = self.$ghHelperNav.find('div > ul.header-nav.main');
+      self.$ghHelperNavUlItems = self.$ghHelperNav.find('div > ul.header-nav.items');
       self.$ghLegend = null;
-      self.addLegend();
-      self.addLink('showAll', 'Show All');
-      self.addLink('hideAll', 'Hide All');
-      self.addDivider();
+      self.addMainLegend();
+      self.addMainLink('showAll', 'Show All');
+      self.addMainLink('hideAll', 'Hide All');
       self.update();
       $('body').on('click', 'a.js-pull-request-tab', function updateClick() {
         self.update();
@@ -113,7 +113,7 @@
       self.searchStr = 'div[data-path]';
       self.allItemsSearchStr = 'div[data-path]';
       self.typeIsVisible = {};
-      self.$ghHelperNavUl.find('li.toggleLink').remove();
+      self.$ghHelperNavUlItems.find('li.toggleLink').remove();
       if (self.isPulls) {
         // List of pull requests grouped by user's github handle
         self.searchStr = '.opened-by > a';
