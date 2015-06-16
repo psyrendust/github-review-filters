@@ -1,7 +1,7 @@
 /*global jQuery:true*/
 /*global History:true*/
-(function($){
-  function GhHelper(){
+(function ($) {
+  function GhHelper() {
     var self = this;
     self.$wrapper = $('body > div.wrapper');
     self.$header = $('div.wrapper > div.header');
@@ -10,18 +10,18 @@
 
     self.addLink = function(fn, label) {
       $('<li><a>' + label + '</a></li>')
-      .click(function() {
+      .click(function () {
         self[fn]();
       })
       .appendTo(self.$ghHelperNavUl);
     };
 
-    self.addToggleLink = function(type) {
+    self.addToggleLink = function (type) {
       var label = (self.isPulls ? '' : '.') + type;
       $('<li class="toggleLink selected"><a>' + label + ' (' + self.fileTypes[type].length + ')</a></li>')
-      .click(function() {
+      .click(function () {
         if (self.typeIsVisible[type]) {
-          self.fileTypes[type].forEach(function(item) {
+          self.fileTypes[type].forEach(function (item) {
             if (self.isPulls) {
               item.parent().parent().parent().parent().hide();
             } else {
@@ -31,7 +31,7 @@
           self.typeIsVisible[type] = false;
           $(this).removeClass('selected');
         } else {
-          self.fileTypes[type].forEach(function(item) {
+          self.fileTypes[type].forEach(function (item) {
             if (self.isPulls) {
               item.parent().parent().parent().parent().show();
             } else {
@@ -51,33 +51,33 @@
       self.$ghLegend = self.$ghHelperNavUl.find('#ghLegend');
       self.$ghHelperNav.find('.octicon').hover(function(){
         self.$ghLegend.fadeIn();
-      }, function() {
+      }, function () {
         self.$ghLegend.fadeOut();
       });
     };
 
-    self.addDivider = function() {
+    self.addDivider = function () {
       $('<div class="divider-vertical"></div>')
       .appendTo(self.$ghHelperNavUl);
     };
 
-    self.showAll = function() {
+    self.showAll = function () {
       $(self.$allItems).parent().show();
-      Object.keys(self.typeIsVisible).forEach(function(type) {
+      Object.keys(self.typeIsVisible).forEach(function (type) {
         self.typeIsVisible[type] = true;
       });
       self.$ghHelperNavUl.find('li.toggleLink').addClass('selected');
     };
 
-    self.hideAll = function() {
+    self.hideAll = function () {
       $(self.$allItems).parent().hide();
-      Object.keys(self.typeIsVisible).forEach(function(type) {
+      Object.keys(self.typeIsVisible).forEach(function (type) {
         self.typeIsVisible[type] = false;
       });
       self.$ghHelperNavUl.find('li.toggleLink').removeClass('selected');
     };
 
-    self.init = function() {
+    self.init = function () {
       var pathname = window.location.pathname.split('/');
       self.isEnterprise = $('body').hasClass('enterprise');
       self.isPulls = pathname[3] === 'pulls';
@@ -100,14 +100,14 @@
       $('body').on('click', 'a.issue-title-link', function updateClick() {
         self.update();
       });
-      $('body').on('DOMNodeInserted', '.wrapper > .site', function(e) {
+      $('body').on('DOMNodeInserted', '.wrapper > .site', function (e) {
         if (!!e.target.className && (e.target.className.indexOf('view-pull-request') >= 0 || e.target.className.indexOf('issues-listing') >= 0)) {
           self.update();
         }
       });
     };
 
-    self.update = function() {
+    self.update = function () {
       var pathname = window.location.pathname.split('/');
       self.isEnterprise = $('body').hasClass('enterprise');
       self.isPulls = pathname[3] === 'pulls' || pathname[3] === 'issues';
@@ -122,7 +122,7 @@
         self.allItemsSearchStr = 'ul.table-list-issues > li.table-list-item > .issue-title';
       }
       self.$allItems = $(self.allItemsSearchStr);
-      $(self.searchStr).each(function() {
+      $(self.searchStr).each(function () {
         var fileType = self.isPulls ? $(this).text().trim() : $(this).attr('data-path').split('.').pop();
         if (!self.fileTypes.hasOwnProperty(fileType)) {
           self.fileTypes[fileType] = [];
@@ -130,7 +130,7 @@
         self.typeIsVisible[fileType] = true;
         self.fileTypes[fileType].push($(this));
       });
-      Object.keys(self.fileTypes).forEach(function(fileType) {
+      Object.keys(self.fileTypes).forEach(function (fileType) {
         self.addToggleLink(fileType);
       });
     };
@@ -138,9 +138,9 @@
     self.init();
 
   }
-  $(document).ready(function() {
+  $(document).ready(function () {
     var ghHelper = new GhHelper();
-    $(window).bind('popstate', function() {
+    $(window).bind('popstate', function () {
       ghHelper.update();
     });
     ghHelper.update();
