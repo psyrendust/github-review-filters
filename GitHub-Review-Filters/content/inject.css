@@ -1,24 +1,57 @@
 .wrapper.gh-helper > .header {
-  position: 'fixed';
-  width: 100%;
+  /*position: 'fixed';*/
+  /*width: 100%;*/
   z-index: 100;
 }
-#ghHelperNav > div > ul {
-  margin-top: 2px;
+.wrapper.gh-helper > #ghHelperNav {
+  padding: 0;
+}
+#ghHelperNav > div {
   position: relative;
-  width: 100%;
+}
+#ghHelperNav > div > ul {
+  list-style-type: none;
+  margin-top: 2px;
+}
+#ghHelperNav > div > ul.header-nav.main {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#ghHelperNav > div > div.divider-vertical {
+  background-color: #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+  display: block;
+  height: 100%;
+  left: 168px;
+  min-height: 30px;
+  margin: 0 15px 0 0;
+  position: absolute;
+  top: 0px;
+  width: 1px;
+}
+#ghHelperNav > div > ul.header-nav.items {
+  display: block;
+  margin-left: 180px;
+  position: relative;
 }
 #ghHelperNav > div > ul > li {
   cursor: pointer;
   position: relative;
+  margin: 0 2px;
 }
-#ghHelperNav > div > ul > li > .octicon {
-  display: inline-block;
-  font-size: 18px;
-  font-weight: normal;
-  line-height: 18px;
+#ghHelperNav > div > ul > li > a {
+  display: block;
+  padding: 4px 6px;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
 }
-#ghHelperNav > div > ul > li.toggleLink:after {
+#ghHelperNav > div > ul > li > a:hover {
+  text-decoration: none;
+}
+#ghHelperNav > div > ul > li:after {
   background: transparent;
   bottom: -1px;
   content: '';
@@ -27,6 +60,15 @@
   position: absolute;
   width: 100%;
 }
+#ghHelperNav > div > ul > li:hover:after {
+  background: #4183c4;
+}
+#ghHelperNav > div > ul > li > .octicon {
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 20px;
+  padding-left: 0;
+}
 #ghHelperNav > div > ul > li.toggleLink.selected:after {
   background: #4183c4;
 }
@@ -34,14 +76,7 @@
   color: #4183c4;
 }
 #ghHelperNav > div > ul > li.toggleLink.selected > a:hover {
-}
-#ghHelperNav > div > ul > div.divider-vertical {
-  background-color: #e5e5e5;
-  border-right: 1px solid #e5e5e5;
-  float: left;
-  height: 28px;
-  margin: 0 15px 0 8px;
-  width: 1px;
+  text-decoration: none;
 }
 #ghHelperNav > div > ul > li {
   line-height: 18px;
@@ -116,7 +151,7 @@
 .enterprise #ghHelperNav > div > ul {
   border-top-color: #434648;
 }
-.enterprise #ghHelperNav > div > ul > div.divider-vertical {
+.enterprise #ghHelperNav > div > div.divider-vertical {
   background-color: #2a2c2e;
   border-right-color: #434648;
 }

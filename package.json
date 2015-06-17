@@ -1,0 +1,26 @@
+{
+  "name": "github-review-filters",
+  "version": "0.1.1",
+  "private": true,
+  "description": "Chrome extension that creates a filters menu bar on GitHub so that you can show/hide file types for pull requests.",
+  "scripts": {
+    "test": "eslint */content/inject.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psyrendust/github-review-filters.git"
+  },
+  "author": "Larry Gordon <lgordon@psyrendust.com>",
+  "contributors": [
+    "Adam Yee <adamjyee@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/psyrendust/github-review-filters/issues"
+  },
+  "homepage": "https://github.com/psyrendust/github-review-filters#readme",
+  "devDependencies": {
+    "babel-eslint": "^3.1.15",
+    "eslint": "^0.23.0"
+  }
+}
