@@ -1,4 +1,11 @@
 
+0.1.3 / 2015-06-16
+==================
+
+  * Chore: Bumps to version 0.1.3
+  * Fix: Adds rule for manifest.json in .editorconfig
+  * Fix: Fixes formatting issue in manifest.json
+
 0.1.2 / 2015-06-16
 ==================
 
