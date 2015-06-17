@@ -2,7 +2,7 @@
   // Required
   "name": "__MSG_appName__",
   "short_name": "__MSG_appName__",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "psyrendust",
   "description": "__MSG_appDesc__",
   "homepage_url": "https://github.com/psyrendust/github-review-filters",
