@@ -48,8 +48,10 @@
       .appendTo(self.$ghHelperNavUlMain);
       self.$ghLegend = self.$ghHelperNavUlMain.find('#ghLegend');
       self.$ghHelperNav.find('.octicon').hover(function () {
+        self.$ghHelperNav.addClass('overflow');
         self.$ghLegend.fadeIn();
       }, function () {
+        self.$ghHelperNav.removeClass('overflow');
         self.$ghLegend.fadeOut();
       });
     };
