@@ -130,9 +130,17 @@
         self.typeIsVisible[itemType] = true;
         self.itemTypes[itemType].push($(this));
       });
-      Object.keys(self.itemTypes).forEach(function (itemType) {
-        self.addToggleLink(itemType);
-      });
+      var itemTypes = Object.keys(self.itemTypes);
+      if (itemTypes.length) {
+        itemTypes.forEach(function (itemType) {
+          self.addToggleLink(itemType);
+        });
+        setTimeout(function () {
+          self.$ghHelperNav.addClass('active');
+        }, 400);
+      } else {
+        self.$ghHelperNav.removeClass('active overflow');
+      }
     };
 
     self.init();

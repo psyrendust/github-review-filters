@@ -4,8 +4,26 @@
 .wrapper.gh-helper > #ghHelperNav {
   padding: 0;
 }
+#ghHelperNav.header {
+  border-bottom-width: 0;
+  border-bottom-color: transparent;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: border 0ms linear 0ms, max-height 0ms linear 0ms;
+  transition: border 0ms linear 0ms, max-height 0ms linear 0ms;
+}
 #ghHelperNav > div {
   position: relative;
+}
+#ghHelperNav.active {
+  border-bottom-width: 1px;
+  border-bottom-color: #e5e5e5;
+  max-height: 200px;
+  -webkit-transition: border 800ms cubic-bezier(0.250, 0.460, 0.450, 0.940) 200ms, max-height 1800ms cubic-bezier(0.250, 0.460, 0.450, 0.940) 200ms;
+  transition: border 800ms cubic-bezier(0.250, 0.460, 0.450, 0.940) 200ms, max-height 1800ms cubic-bezier(0.250, 0.460, 0.450, 0.940) 200ms;
+}
+#ghHelperNav.active.overflow {
+  overflow: visible;
 }
 #ghHelperNav > div > ul {
   list-style-type: none;
