@@ -1,7 +1,7 @@
 {
   "name": "__MSG_appName__",
   "short_name": "__MSG_appName__",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "psyrendust",
   "description": "__MSG_appDesc__",
   "homepage_url": "https://github.com/psyrendust/github-review-filters",
@@ -22,6 +22,9 @@
       "content/inject.js"
     ],
     "matches": [
+      "https://*.com/*/*/issues*",
+      "https://*.org/*/*/issues*",
+      "https://*.us/*/*/issues*",
       "https://*.com/*/*/pull*",
       "https://*.org/*/*/pull*",
       "https://*.us/*/*/pull*"
@@ -35,6 +38,9 @@
     "content/jquery-2.1.1.min.map"
   ],
   "permissions": [
+    "https://*.com/*/*/issues*",
+    "https://*.org/*/*/issues*",
+    "https://*.us/*/*/issues*",
     "https://*.com/*/*/pull*",
     "https://*.org/*/*/pull*",
     "https://*.us/*/*/pull*"

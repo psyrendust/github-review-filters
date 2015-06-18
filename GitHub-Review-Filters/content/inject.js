@@ -16,10 +16,10 @@
 
     self.addToggleLink = function (type) {
       var label = (self.isPulls ? '' : '.') + type;
-      $('<li class="header-nav-item toggleLink selected"><a>' + label + ' (' + self.fileTypes[type].length + ')</a></li>')
+      $('<li class="header-nav-item toggleLink selected"><a>' + label + ' (' + self.itemTypes[type].length + ')</a></li>')
       .click(function () {
         if (self.typeIsVisible[type]) {
-          self.fileTypes[type].forEach(function (item) {
+          self.itemTypes[type].forEach(function (item) {
             if (self.isPulls) {
               item.parent().parent().parent().parent().hide();
             } else {
@@ -29,7 +29,7 @@
           self.typeIsVisible[type] = false;
           $(this).removeClass('selected');
         } else {
-          self.fileTypes[type].forEach(function (item) {
+          self.itemTypes[type].forEach(function (item) {
             if (self.isPulls) {
               item.parent().parent().parent().parent().show();
             } else {
@@ -48,8 +48,10 @@
       .appendTo(self.$ghHelperNavUlMain);
       self.$ghLegend = self.$ghHelperNavUlMain.find('#ghLegend');
       self.$ghHelperNav.find('.octicon').hover(function () {
+        self.$ghHelperNav.addClass('overflow');
         self.$ghLegend.fadeIn();
       }, function () {
+        self.$ghHelperNav.removeClass('overflow');
         self.$ghLegend.fadeOut();
       });
     };
@@ -79,7 +81,7 @@
       var pathname = window.location.pathname.split('/');
       self.isEnterprise = $('body').hasClass('enterprise');
       self.isPulls = pathname[3] === 'pulls';
-      self.fileTypes = {};
+      self.itemTypes = {};
       self.searchStr = 'div.meta[data-path]';
       self.typeIsVisible = {};
       self.$header.after('<div id="ghHelperNav" class="' + self.$header.attr('class') + '"><div class="container clearfix"><ul class="header-nav main"></ul><div class="divider-vertical"></div><ul class="header-nav items"></ul></div></div>');
@@ -109,7 +111,7 @@
       var pathname = window.location.pathname.split('/');
       self.isEnterprise = $('body').hasClass('enterprise');
       self.isPulls = pathname[3] === 'pulls' || pathname[3] === 'issues';
-      self.fileTypes = {};
+      self.itemTypes = {};
       self.searchStr = 'div[data-path]';
       self.allItemsSearchStr = 'div[data-path]';
       self.typeIsVisible = {};
@@ -121,16 +123,24 @@
       }
       self.$allItems = $(self.allItemsSearchStr);
       $(self.searchStr).each(function () {
-        var fileType = self.isPulls ? $(this).text().trim() : $(this).attr('data-path').split('.').pop();
-        if (!self.fileTypes.hasOwnProperty(fileType)) {
-          self.fileTypes[fileType] = [];
+        var itemType = self.isPulls ? $(this).text().trim() : $(this).attr('data-path').split('.').pop();
+        if (!self.itemTypes.hasOwnProperty(itemType)) {
+          self.itemTypes[itemType] = [];
         }
-        self.typeIsVisible[fileType] = true;
-        self.fileTypes[fileType].push($(this));
+        self.typeIsVisible[itemType] = true;
+        self.itemTypes[itemType].push($(this));
       });
-      Object.keys(self.fileTypes).forEach(function (fileType) {
-        self.addToggleLink(fileType);
-      });
+      var itemTypes = Object.keys(self.itemTypes);
+      if (itemTypes.length) {
+        itemTypes.forEach(function (itemType) {
+          self.addToggleLink(itemType);
+        });
+        setTimeout(function () {
+          self.$ghHelperNav.addClass('active');
+        }, 400);
+      } else {
+        self.$ghHelperNav.removeClass('active overflow');
+      }
     };
 
     self.init();
