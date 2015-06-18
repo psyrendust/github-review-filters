@@ -1,4 +1,14 @@
 
+0.1.4 / 2015-06-18
+==================
+
+  * Chore: Bumps to version 0.1.4
+  * Chore: Change var name from `self.fileTypes` to `self.itemTypes`
+  * Chore: Removes unused styles
+  * Feat: Fixes layout and rendering of octicon and legend
+  * Feat: Hides the GitHub Helper Nav if there are no filters created
+  * Feat: Update to support GitHub issues filtering
+
 0.1.3 / 2015-06-16
 ==================
 
